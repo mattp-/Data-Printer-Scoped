@@ -39,10 +39,6 @@ __END__
 
 =encoding UTF-8
 
-=head1 NAME
-
-Data::Printer::Scoped - silence Data::Printer except in a controlled scope
-
 =head1 SYNOPSIS
 
 Sometimes you want to stick a dumper statement on a very hot codepath, but you
@@ -72,19 +68,6 @@ do this:
 Takes a single code block, and runs it. Before running, the overridden print
 method of Data::Printer will be enabled, and disabled afterward.
 
-=head1 VERSION
-
-version 0.001000
-
-=head1 AUTHOR
-
-Matthew Phillips <mattp@cpan.org>
-
-=head1 COPYRIGHT AND LICENSE
-
-This software is copyright (c) 2013 by Matthew Phillips <mattp@cpan.org>.
-
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+=back
 
 =cut
