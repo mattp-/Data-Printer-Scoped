@@ -8,6 +8,7 @@ use Data::Printer ();
 use Class::Method::Modifiers qw(:all);
 use Sub::Exporter::Progressive -setup => {
   exports => [qw(scope)],
+  groups => { default => [qw(scope)] },
 };
 
 our $enabled = 0;
@@ -16,7 +17,7 @@ install_modifier('Data::Printer', 'around', '_print_and_return', sub {
   my $orig = shift;
 
   # noop unless enabled.
-  $orig->(@_) if $enabled;
+  return $enabled ? $orig->(@_) : ();
 });
 
 # we only blanket disable Data::Printer if a scope() call has been made.
