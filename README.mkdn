@@ -4,7 +4,7 @@ Data::Printer::Scoped - silence Data::Printer except in a controlled scope
 
 # VERSION
 
-version 0.001003
+version 0.001004
 
 # SYNOPSIS
 
