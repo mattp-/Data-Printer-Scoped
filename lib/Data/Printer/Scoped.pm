@@ -13,7 +13,7 @@ use base qw(Exporter);
 
 our @EXPORT = qw(scope);
 
-our $enabled = 1;
+our $enabled = 0;
 
 install_modifier('Data::Printer', 'around', '_print_and_return', sub {
   my $orig = shift;
