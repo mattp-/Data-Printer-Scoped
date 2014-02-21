@@ -1,5 +1,10 @@
 {{$NEXT}}
 
+0.001002  2013-12-18 10:44:55 America/Toronto
+  - removed Sub::Exporter::Progressive, use Exporter instead
+  - add DDP::S shorthand module
+  - import Data::Printer by default into caller when using ::Scoped
+
 0.001001  2013-12-18 10:44:55 America/Toronto
   - added missing prereqs.
 
