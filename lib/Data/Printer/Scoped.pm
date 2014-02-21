@@ -5,13 +5,15 @@ use strict;
 use warnings;
 
 use Data::Printer ();
+use Import::Into;
+use Context::Preserve;
 use Class::Method::Modifiers qw(:all);
-use Sub::Exporter::Progressive -setup => {
-  exports => [qw(scope)],
-  groups => { default => [qw(scope)] },
-};
 
-our $enabled = 0;
+use base qw(Exporter);
+
+our @EXPORT = qw(scope);
+
+our $enabled = 1;
 
 install_modifier('Data::Printer', 'around', '_print_and_return', sub {
   my $orig = shift;
@@ -20,15 +22,19 @@ install_modifier('Data::Printer', 'around', '_print_and_return', sub {
   return $enabled ? $orig->(@_) : ();
 });
 
+sub import {
+  shift->export_to_level(1);
+  Data::Printer->import::into(1);
+}
+
 # we only blanket disable Data::Printer if a scope() call has been made.
 sub scope(&) {
   my ($code) = @_;
 
-  $enabled = 1;
-  my @ret = $code->();
   $enabled = 0;
 
-  return @ret;
+  return preserve_context { $enabled = 1; $code->() }
+             after => sub { $enabled = 0 };
 }
 
 1;

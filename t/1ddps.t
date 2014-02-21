@@ -2,8 +2,7 @@ use strict;
 use warnings;
 
 use Test::More;
-
-use Data::Printer::Scoped;
+use DDP::S;
 BEGIN {
   $ENV{ANSI_COLORS_DISABLED} = 1;
   delete $ENV{DATAPRINTERRC};
